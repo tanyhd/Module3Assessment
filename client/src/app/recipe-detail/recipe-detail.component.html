@@ -1,1 +1,9 @@
-<p>recipe-detail works!</p>
+<h1>{{recipe.title}}</h1>
+<img class="imgSize" src="{{recipe.image}}" alt="">
+<h2>Ingredients</h2>
+<ol>
+  <li *ngFor="let i of recipe.ingredients">{{i}}</li>
+</ol>
+<h2>Instructions</h2>
+<p>{{recipe.instruction}}</p>
+<button type="button" routerLink="['']">Back</button>
