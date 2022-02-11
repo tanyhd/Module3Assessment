@@ -4,4 +4,4 @@
   <li *ngFor="let i of recipeList" [routerLink]="['recipe', i.id]">{{i.title}}</li>
 </ul>
 
-<button type="button">Add</button>
+<button type="button"[routerLink]="['/add']">Add</button>

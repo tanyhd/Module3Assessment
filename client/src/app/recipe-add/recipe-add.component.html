@@ -1,1 +1,26 @@
-<p>recipe-add works!</p>
+<form [formGroup]="form" (ngSubmit)="submitForm()">
+  <table>
+    <tr>
+      <h2>Title</h2>
+      <td><input type="text" formControlName="title"></td>
+    </tr>
+    <tr>
+      <td><h2>Ingredients</h2></td>
+      <td><input type="text" #item></td>
+      <td><button type="button" (click)="addIngredient(item.value)">Add</button></td>
+    </tr>
+    <tr *ngFor="let item of ingredients">{{item}} <button type="button" (click)="removeIngredient(item)">Remove</button></tr>
+    <tr>
+      <td><h2>Instructions</h2></td>
+      <td><textarea name="" id="" cols="30" rows="10" formControlName="instruction"></textarea></td>
+    </tr>
+    <tr>
+      <td><h2>Image</h2></td>
+      <td><input type="text" formControlName="image"></td>
+    </tr>
+  </table>
+  <tr>
+    <td><button type="button" routerLink="['']">Back</button></td>
+    <td><button type="submit" [disabled]="form.invalid">Add</button></td>
+  </tr>
+</form>
