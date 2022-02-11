@@ -1,0 +1,9 @@
+.displayList {
+  margin: 15px;
+  padding: 15px;
+  font-size: x-large;
+}
+
+.displayList:hover {
+  background-color: bisque;
+}

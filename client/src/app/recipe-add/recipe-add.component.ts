@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { v4 as uuidv4 } from 'uuid';
+import { Recipe } from '../models';
+import { RecipeService } from '../recipe.service';
 
 @Component({
   selector: 'app-recipe-add',
@@ -11,17 +14,17 @@ export class RecipeAddComponent implements OnInit {
 
   ingredients: string[] = [];
   form: FormGroup = new FormGroup({});
-  ingredientsArray: FormArray = new FormArray([]);
+  recipe!: Recipe;
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router, private recipeService: RecipeService) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      id: this.fb.control(""),
+      id: this.fb.control(uuidv4()),
       title: this.fb.control("", [Validators.minLength(3), Validators.required]),
       image: this.fb.control("", [Validators.required]),
       instruction: this.fb.control("", [Validators.minLength(3), Validators.required]),
-      ingredients: this.fb.control({ingredients: this.ingredientsArray})
+      ingredients: this.fb.control('')
     })
   }
 
@@ -38,14 +41,14 @@ export class RecipeAddComponent implements OnInit {
  }
 
   submitForm() {
-    for(let i=0; i<this.ingredients.length; i++) {
-      const temp = new FormControl(this.ingredients[i])
-      this.ingredientsArray.push(temp);
-    }
-    //console.log(this.ingredientsArray)
-    console.log(this.ingredients)
-    console.log(this.form.value)
+
+    this.recipe = this.form.value as Recipe;
+    this.recipe.ingredients = this.ingredients;
+    console.log(this.recipe);
+
     this.form.reset();
+    this.recipeService.uploadRecipe(this.recipe);
+    this.router.navigate(['']);
 
   }
 

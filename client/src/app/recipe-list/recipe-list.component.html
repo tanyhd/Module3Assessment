@@ -1,7 +1,7 @@
 <h1>Recipe List</h1>
 
 <ul>
-  <li *ngFor="let i of recipeList" [routerLink]="['recipe', i.id]">{{i.title}}</li>
+  <li class="displayList" *ngFor="let i of recipeList" [routerLink]="['recipe', i.id]">{{i.title}}</li>
 </ul>
 
 <button type="button"[routerLink]="['/add']">Add</button>

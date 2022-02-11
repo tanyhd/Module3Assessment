@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { lastValueFrom } from "rxjs";
 import { Recipe, RecipeList } from "./models";
@@ -19,4 +19,12 @@ export class RecipeService {
       this.http.get<Recipe>(`http://localhost:8080/api/recipe/${recipeId}`)
     ))
   }
+
+  uploadRecipe(recipe: Recipe) {
+
+    return lastValueFrom(
+      this.http.post<Recipe>("http://localhost:8080/api/recipe", recipe)
+    )
+  }
+
 }

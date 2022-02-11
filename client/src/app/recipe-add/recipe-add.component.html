@@ -9,7 +9,11 @@
       <td><input type="text" #item></td>
       <td><button type="button" (click)="addIngredient(item.value)">Add</button></td>
     </tr>
-    <tr *ngFor="let item of ingredients">{{item}} <button type="button" (click)="removeIngredient(item)">Remove</button></tr>
+    <tr *ngFor="let item of ingredients">
+      <td></td>
+      <td>{{item}}</td>
+      <td><button type="button" (click)="removeIngredient(item)">Remove</button></td>
+    </tr>
     <tr>
       <td><h2>Instructions</h2></td>
       <td><textarea name="" id="" cols="30" rows="10" formControlName="instruction"></textarea></td>
