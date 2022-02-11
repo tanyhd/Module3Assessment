@@ -28,6 +28,7 @@ public class RecipeRestController {
 
     @GetMapping(path="/api/recipe/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> getRecipesById(@PathVariable String id) {
+        
         Recipe recipe = recipeService.getRecipeById(id).get();
 
         JsonObjectBuilder recipeJsonObj = Json.createObjectBuilder();
@@ -38,7 +39,6 @@ public class RecipeRestController {
         for(int i=0; i<ingredients.size(); i++) {
             ingredientsJsonArray.add(ingredients.get(i));
         }
-
 
         recipeJsonObj.add("id", recipe.getId())
                     .add("title", recipe.getTitle())
