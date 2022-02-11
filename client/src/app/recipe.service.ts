@@ -10,20 +10,20 @@ export class RecipeService {
 
   getAllRecipes() {
     return(lastValueFrom(
-      this.http.get<RecipeList[]>("http://localhost:8080/api/recipes")
+      this.http.get<RecipeList[]>("/api/recipes")
     ))
   }
 
   getRecipe(recipeId: String) {
     return(lastValueFrom(
-      this.http.get<Recipe>(`http://localhost:8080/api/recipe/${recipeId}`)
+      this.http.get<Recipe>(`/api/recipe/${recipeId}`)
     ))
   }
 
   uploadRecipe(recipe: Recipe) {
 
     return lastValueFrom(
-      this.http.post<Recipe>("http://localhost:8080/api/recipe", recipe)
+      this.http.post<Recipe>("/api/recipe", recipe)
     )
   }
 
